@@ -3,12 +3,18 @@ const app = express();
 const http = require("http").createServer(app);
 const mongoose = require('mongoose')
 const morgan = require('morgan')
-const Site = require('./models/site')
+const Site = require('../models/site')
 
 const mongodb = require("mongodb");
 
-// var mongoClient = mongodb.MongoClient;
-// var ObjectId = mongodb.ObjectId;
+// let mongoClient = mongodb.MongoClient;
+// let ObjectId = mongodb.ObjectId;
+
+app.set('view engine', 'ejs');
+app.use("/public", express.static(__dirname + "/public"));
+
+const formidableMiddleware = require('express-formidable');
+app.use(formidableMiddleware());
 
 let database = null;
 const dbURI = 'mongodb+srv://webCrawler:Taekwondo2021@cluster0.jkwzw.mongodb.net/webCrawler?retryWrites=true&w=majority'
@@ -51,7 +57,9 @@ app.post('/',(req,res) => {
         })
     })
 
-
+app.get("/", async function (request, result){
+    result.render("index");
+});
 
 // http.listen(3000, function () {
 //     console.log("Server started running at port: 3000");
