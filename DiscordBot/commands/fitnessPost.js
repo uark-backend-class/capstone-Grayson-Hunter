@@ -22,8 +22,8 @@ function createRedditLink (){let redditLink = ''
 }
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('reddit')
-		.setDescription('reddit link'),
+		.setName('fit')
+		.setDescription('fitness link'),
 	async execute(interaction) {
 		await interaction.reply(await createRedditLink());
 	},

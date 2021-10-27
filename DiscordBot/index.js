@@ -2,16 +2,16 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
-const mongoose = require('mongoose')
-const morgan = require('morgan')
-const axios = require('axios')
-const RedditPost = require('./models/redditPost')
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const axios = require('axios');
+const RedditPost = require('./models/redditPost');
 
-//const dbURI = 'mongodb+srv://webCrawler:Taekwondo2021@cluster0.jkwzw.mongodb.net/redditPosts?retryWrites=true&w=majority'
+const dbURI = 'mongodb+srv://FitBot:<Taekwondo2021>@cluster0.ysfpk.mongodb.net/FITBOT?retryWrites=true&w=majority'
 
-// mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-// .then(res => {/*console.log(res)*/})
-// .catch( err => console.log(err))
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+.then(res => {/*console.log(res)*/})
+.catch( err => console.log(err))
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -56,4 +56,6 @@ client.on('interactionCreate', async interaction => {
 
 // Log the bot into Discord
 client.login(token);
+
+
 
