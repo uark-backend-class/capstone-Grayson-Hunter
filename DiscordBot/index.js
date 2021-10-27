@@ -7,11 +7,11 @@ const morgan = require('morgan')
 const axios = require('axios')
 const RedditPost = require('./models/redditPost')
 
-const dbURI = 'mongodb+srv://webCrawler:Taekwondo2021@cluster0.jkwzw.mongodb.net/redditPosts?retryWrites=true&w=majority'
+//const dbURI = 'mongodb+srv://webCrawler:Taekwondo2021@cluster0.jkwzw.mongodb.net/redditPosts?retryWrites=true&w=majority'
 
-mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
-.then(res => {/*console.log(res)*/})
-.catch( err => console.log(err))
+// mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+// .then(res => {/*console.log(res)*/})
+// .catch( err => console.log(err))
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
@@ -36,7 +36,7 @@ client.on('interactionCreate', async interaction => {
 
 	//post request here
 	// const redditPost = new RedditPost({url: redditLink})
-		redditPost.save()
+	//redditPost.save()
 	
 
 	if (!interaction.isCommand()) return;
