@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const axios = require('axios')
+const axios = require('axios');
+const RedditPost = require('../models/redditPost');
 
 //&t= for hour, week, month
 
@@ -8,7 +9,11 @@ function createRedditLink (){let redditLink = ''
 	.then(res => {
 		let randomIndex = Math.floor(Math.random() * 19);
 		if (res.data && res.data.data && res.data.data.children[randomIndex] && res.data.data.children[randomIndex].data && res.data.data.children[randomIndex].data.url){
-			return res.data.data.children[randomIndex].data.url;
+			let url = res.data.data.children[randomIndex].data.url;
+			let post = new RedditPost({url});
+			post.save()
+	
+			return url;
 		}
 		else {
 			console.log("Article not Found!");
@@ -16,6 +21,7 @@ function createRedditLink (){let redditLink = ''
 		}
 		
 	})
+
 	.catch(err => {
 		console.log(err)
 	})
