@@ -1,4 +1,3 @@
-// Require the necessary discord.js classes
 require("dotenv").config();
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
@@ -13,7 +12,6 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(res => {/*console.log(res)*/})
 .catch( err => console.log(err))
 
-// Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
 client.commands = new Collection();
@@ -26,18 +24,12 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-// When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
 });
 
 //Providing info on command
 client.on('interactionCreate', async interaction => {
-
-	//post request here
-	// const redditPost = new RedditPost({url: redditLink})
-	//redditPost.save()
-	
 
 	if (!interaction.isCommand()) return;
 
@@ -54,7 +46,7 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-// Log the bot into Discord
+// Log the bot into Discord, Heroku handles this now.
 client.login(process.env.DISCORD_TOKEN);
 
 
